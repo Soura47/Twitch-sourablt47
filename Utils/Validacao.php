@@ -1,13 +1,14 @@
 <?php  
 
-class Validation{
+//Validação
+class Validacao{
 	static function clean($str){
 		$str = trim($str);
 		$str = stripcslashes($str);
 		$str = htmlspecialchars($str);
 		return $str;
 	}
-    
+
     static function name($str){
 		# Letters Only 
 		$name_regex = "/^([a-zA-Z' ]+)$/";
@@ -16,9 +17,9 @@ class Validation{
         else return false;
 	}
 	static function username($str){
-		// Must start with letter [A-Za-z]
-		// 6-8 characters  {5,8}
-		// Letters and numbers only [A-Za-z0-9]
+		// Deve começar com a letra [A-Za-z]
+		// 6-8 caracteres {5,8}
+		// Apenas letras e números [A-Za-z0-9]
 		$username_regex = "/^[A-Za-z][A-Za-z0-9]{5,8}$/";
 		if (preg_match($username_regex, $str)) 
 			return true;
@@ -30,16 +31,13 @@ class Validation{
         else return false;
 	}
 	static function password($str){
-		/*
-	     -> Has minimum 4 characters in length. Adjust it by modifying {4,}
 
-	    -> At least one uppercase English letter. (?=.*?[A-Z])
-	     At least one lowercase English letter.  (?=.*?[a-z])
-	    -> At least one digit. (?=.*?[0-9])
-	    -> At least one special character, (?=.*?[#?!@$%^&*-])
+	    // Possui no mínimo 4 caracteres. Ajuste-o modificando {4,}
+	    // Pelo menos uma letra maiúscula em inglês. (?=.*?[A-Z])
+	    // Pelo menos uma letra minúscula em inglês.  (?=.*?[a-z])
+	    //  Pelo menos um dígito. (?=.*?[0-9])
+	    // Pelo menos um caractere especial, (?=.*?[#?!@$%^&*-])
 	    
-	    
-    	*/
 		$password_regex = "/^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{4,}$/"; 
 
 		if (preg_match($password_regex, $str)) 
